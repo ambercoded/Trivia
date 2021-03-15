@@ -15,14 +15,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         let window = UIWindow(frame: UIScreen.main.bounds)
 
-        let questionVC = QuestionViewController(
-            question: "What's the capital of Germany?",
-            options: ["Berlin", "Munich"]) { selectedAnswer in
-            print("selected: \(selectedAnswer)")
-        }
+//        let questionVC = QuestionViewController(
+//            question: "What's the capital of Germany?",
+//            options: ["Berlin", "Munich"]) { selectedAnswer in
+//            print("selected: \(selectedAnswer)")
+//        }
+
+        let resultVC = ResultsViewController(summary: "You got 1/2 correct.", answers: [PresentableAnswer(question: "What's the capital of Germany?", answer: "Berlin", wrongAnswer: "Munich")])
 
         self.window = window
-        window.rootViewController = questionVC
+        window.rootViewController = resultVC
         window.makeKeyAndVisible()
         return true
     }

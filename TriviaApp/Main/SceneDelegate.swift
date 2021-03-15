@@ -16,14 +16,21 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         let window = UIWindow(windowScene: windowScene)
 
-        let questionVC = QuestionViewController(
-            question: "What's the capital of Germany?",
-            options: ["Berlin", "Munich"]) { selectedAnswer in
-            print("selected: \(selectedAnswer)")
-        }
+        //        let questionVC = QuestionViewController(
+        //            question: "What's the capital of Germany?",
+        //            options: ["Berlin", "Munich"]) { selectedAnswer in
+        //            print("selected: \(selectedAnswer)")
+        //        }
+
+        let resultVC = ResultsViewController(
+            summary: "You got 1/2 correct.",
+            answers: [
+                PresentableAnswer(question: "What's the capital of Germany?", answer: "Berlin", wrongAnswer: nil),
+                PresentableAnswer(question: "Who are you?", answer: "Human", wrongAnswer: "God")
+            ])
 
         self.window = window
-        window.rootViewController = questionVC
+        window.rootViewController = resultVC
         window.makeKeyAndVisible()
     }
 

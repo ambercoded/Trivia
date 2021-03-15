@@ -7,18 +7,6 @@
 
 import UIKit
 
-struct PresentableAnswer {
-    let isCorrect: Bool
-}
-
-class CorrectAnswerCell: UITableViewCell {
-
-}
-
-class WrongAnswerCell: UITableViewCell {
-
-}
-
 class ResultsViewController: UIViewController {
     @IBOutlet weak var headerLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
@@ -36,22 +24,44 @@ class ResultsViewController: UIViewController {
         super.viewDidLoad()
 
         headerLabel.text = summary
+        registerCells()
+    }
+
+    func registerCells() {
+        tableView.register(CorrectAnswerCell.self)
+        tableView.register(WrongAnswerCell.self)
     }
 }
 
 // MARK: - Table View DataSource
+
 extension ResultsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return answers.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let answerIsCorrect = answers[indexPath.row].isCorrect
-        return answerIsCorrect ? CorrectAnswerCell() : WrongAnswerCell()
+        let answer = answers[indexPath.row]
+        if answer.wrongAnswer == nil {
+            return correctAnswerCell(for: answer)
+        }
+        return wrongAnswerCell(for: answer)
+    }
+
+    private func correctAnswerCell(for answer: PresentableAnswer) -> CorrectAnswerCell {
+        let cell = tableView.dequeueReusableCell(CorrectAnswerCell.self)!
+        cell.questionLabel.text = answer.question
+        cell.answerLabel.text = answer.answer
+        return cell
+    }
+
+    private func wrongAnswerCell(for answer: PresentableAnswer) -> WrongAnswerCell {
+        let cell = tableView.dequeueReusableCell(WrongAnswerCell.self)!
+        cell.questionLabel.text = answer.question
+        cell.correctAnswerLabel.text = answer.answer
+        cell.wrongAnswerLabel.text = answer.wrongAnswer
+        return cell
     }
 }
 
-// MARK: - Table View Delegate
-extension ResultsViewController: UITableViewDelegate {
 
-}
