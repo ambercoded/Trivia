@@ -11,13 +11,16 @@ class QuestionViewController: UIViewController {
     @IBOutlet weak var headerLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
-    private var question: String = ""
-    private var options: [String] = []
+    private let reuseIdentifier = "Cell"
+    private var question = ""
+    private var options = [String]()
+    private var selection: (([String]) -> Void)? = nil
 
-    convenience init(question: String, options: [String]) {
+    convenience init(question: String, options: [String], selection: @escaping ([String]) -> Void) {
         self.init()
         self.question = question
         self.options = options
+        self.selection = selection
     }
 
     override func viewDidLoad() {
@@ -34,7 +37,7 @@ extension QuestionViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
+        let cell = dequeueCell(in: tableView)
         cell.textLabel?.text = options[indexPath.row]
         return cell
     }
@@ -42,5 +45,32 @@ extension QuestionViewController: UITableViewDataSource {
 
 // MARK: - Table View Delegate
 extension QuestionViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selection?(selectedOptions(in: tableView))
+    }
 
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        if tableView.allowsMultipleSelection {
+            selection?(selectedOptions(in: tableView))
+        }
+    }
+
+    private func selectedOptions(in tableView: UITableView) -> [String] {
+        // return the selectedAnswer by looking the indexpath row up in
+        // the options array which fed the tableView
+        // selection?([options[indexPath.row]])
+        // to allow for multiple selection, map over the selectedRows
+        guard let indexPaths = tableView.indexPathsForSelectedRows else { return [] }
+        return indexPaths.map { options[$0.row] }
+    }
+}
+
+// MARK: - Helpers
+extension QuestionViewController {
+    private func dequeueCell(in tableView: UITableView) -> UITableViewCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier) {
+            return cell
+        }
+        return UITableViewCell(style: .default, reuseIdentifier: reuseIdentifier)
+    }
 }
