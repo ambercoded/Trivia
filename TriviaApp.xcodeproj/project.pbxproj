@@ -91,8 +91,8 @@
 		3A16CB1725FE8C2B00653E85 /* TriviaAppTests */ = {
 			isa = PBXGroup;
 			children = (
-				3A16CB1A25FE8C2B00653E85 /* Info.plist */,
 				3A16CB3D25FE8D1300653E85 /* QuestionViewControllerTest.swift */,
+				3A16CB1A25FE8C2B00653E85 /* Info.plist */,
 			);
 			path = TriviaAppTests;
 			sourceTree = "<group>";
