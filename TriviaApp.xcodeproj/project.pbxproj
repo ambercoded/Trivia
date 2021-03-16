@@ -83,6 +83,7 @@
 			isa = PBXGroup;
 			children = (
 				3A16CB0025FE8C2A00653E85 /* TriviaApp */,
+				3A4F9ED326000570009FDB43 /* Extensions */,
 				3A16CB1725FE8C2B00653E85 /* TriviaAppTests */,
 				3A16CB2225FE8C2B00653E85 /* TriviaAppUITests */,
 				3A16CAFF25FE8C2A00653E85 /* Products */,
@@ -101,8 +102,6 @@
 		3A16CB0025FE8C2A00653E85 /* TriviaApp */ = {
 			isa = PBXGroup;
 			children = (
-				3A4F9ED326000570009FDB43 /* Extensions */,
-				3A16CB0F25FE8C2B00653E85 /* Info.plist */,
 				3A16CB6725FE901B00653E85 /* Main */,
 				3A16CB5825FE8FFA00653E85 /* UI */,
 			);
@@ -158,6 +157,7 @@
 		3A16CB6725FE901B00653E85 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				3A16CB0F25FE8C2B00653E85 /* Info.plist */,
 				3A16CB0125FE8C2A00653E85 /* AppDelegate.swift */,
 				3A16CB0325FE8C2A00653E85 /* SceneDelegate.swift */,
 				3A16CB0A25FE8C2B00653E85 /* Assets.xcassets */,
@@ -169,12 +169,9 @@
 			isa = PBXGroup;
 			children = (
 				3A341DB625FF93F10055864D /* ResultsViewController.swift */,
-				3A4F9EE226000609009FDB43 /* WrongAnswerCell.swift */,
-				3A4F9EDE260005DF009FDB43 /* CorrectAnswerCell.swift */,
 				3A341DBC25FF945F0055864D /* ResultsViewController.xib */,
-				3A2CB26A25FFD12300FD3F30 /* CorrectAnswerCell.xib */,
-				3A4F9EC625FFFA63009FDB43 /* WrongAnswerCell.xib */,
 				3A4F9EDA260005B1009FDB43 /* PresentableAnswer.swift */,
+				3AA829A926008D5C001A8EA7 /* Cells */,
 			);
 			path = Result;
 			sourceTree = "<group>";
@@ -185,6 +182,17 @@
 				3A4F9ED426000580009FDB43 /* UITableView+Extensions.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		3AA829A926008D5C001A8EA7 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				3A4F9EE226000609009FDB43 /* WrongAnswerCell.swift */,
+				3A4F9EDE260005DF009FDB43 /* CorrectAnswerCell.swift */,
+				3A2CB26A25FFD12300FD3F30 /* CorrectAnswerCell.xib */,
+				3A4F9EC625FFFA63009FDB43 /* WrongAnswerCell.xib */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -457,7 +465,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2J59QZU6T2;
-				INFOPLIST_FILE = TriviaApp/Info.plist;
+				INFOPLIST_FILE = TriviaApp/Main/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -476,7 +484,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2J59QZU6T2;
-				INFOPLIST_FILE = TriviaApp/Info.plist;
+				INFOPLIST_FILE = TriviaApp/Main/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
