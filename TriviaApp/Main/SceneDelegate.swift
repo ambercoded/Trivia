@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import TriviaEngine
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
